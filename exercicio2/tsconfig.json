@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",                  /* Versão do JS gerado */
+    "module": "commonjs",             /* Sistema de módulos */
+    "rootDir": "./src",               /* Onde estão os arquivos TS */
+    "outDir": "./bin",                /* Onde serão gerados os arquivos JS */
+    "strict": true,                   /* Habilita checagens rigorosas */
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*"],            /* Inclui todos os arquivos TS da pasta src */
+  "exclude": ["node_modules"]         /* Ignora node_modules */
+}
