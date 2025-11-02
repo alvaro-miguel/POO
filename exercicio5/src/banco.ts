@@ -36,8 +36,8 @@ export class Banco{
     }
 
 
-    excluir(numero:string){
-        let indice = this.contas.findIndex( c=> c.numero == numero);
+    excluirConta(numero:string){
+        let indice = this.contas.findIndex( c=> c.numero === numero);
 
         if(indice >= 0){
             this.contas.splice(indice, 1);
@@ -127,5 +127,77 @@ export class Banco{
         return saldoCliente
     }
 
+
+    transferirArrayContas(numcontaOrigem:string, contasDestino: Conta[], valorTotal: number):void{
+        const contaOrigem = this.consultarPorNumero(numcontaOrigem);
+        const valorporConta = valorTotal/contasDestino.length;
+
+        if (!contaOrigem || contasDestino.length == 0){
+            console.log("Conta de origem ou contas destino não encontradas");
+            return;
+        }
+
+        for(let i = 0; i < contasDestino.length; i++){
+            contaOrigem.transferir(contasDestino[i]!, valorporConta);
+        }
+           
+    }
+
+
+    carregarContas(): number {
+        return this.contas.length;
+
+    }
+
+
+    carregarSaldogeral():number{
+        let saldoTotal = 0;
+
+        for(let i = 0; i < this.contas.length; i++){
+            saldoTotal += this.contas[i]!.saldo;
+        }
+
+        return saldoTotal;
+    }
+
+
+    carregarMediasaldo(): number{
+        const numContas = this.carregarContas();
+        const saldoBanco = this.carregarSaldogeral();
+
+        if(numContas === 0){
+            console.log("Não há contas");
+            return 0;
+        }
+
+        return (saldoBanco/numContas);   
+    }
+
+
+    mudarTitularidade(numeroConta: string, cpfCliente: string):void{
+        const contaTitular = this.consultarPorNumero(numeroConta);
+        const novoCLiente = this.consultarCliente(cpfCliente);
+
+        if (!contaTitular || !novoCLiente){
+            console.log("cliente ou conta inexistentes");
+            return;
+        }
+
+        const clienteAntigo = contaTitular.cliente;
+        clienteAntigo.removerConta(numeroConta);        
+
+        contaTitular.cliente = novoCLiente;
+        novoCLiente.contas.push(contaTitular);
+
+    }
+
+
+    excluirCliente(cpf:string): void{
+        let indice = this.clientes.findIndex( c=> c.cpf === cpf);
+
+        if(indice >= 0){
+            this.clientes.splice(indice, 1);
+        }
+    }
 
 }

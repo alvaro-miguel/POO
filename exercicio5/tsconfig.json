@@ -1,44 +1,30 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    // File Layout
+    /* Estrutura de Diretórios */
     "rootDir": "./src",
     "outDir": "./bin",
 
-    // Environment Settings
-    // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
+    /* Configurações Essenciais de Módulo */
+    "module": "commonjs",             /* Padrão do Node.js */
+    "target": "es2020",               /* Compilar para JavaScript moderno */
+    "esModuleInterop": true,          /* Essencial para importar prompt-sync */
 
-    // Other Outputs
-    "sourceMap": true,
+    /* Limpeza de Configurações */
+    "jsx": "preserve",                /* Neutraliza a configuração JSX */
+    "moduleDetection": "auto",        /* ✅ CORREÇÃO: Deixa o TS detectar o módulo, não força */
+    "isolatedModules": false,         /* Desativado para CommonJS simples */
+    "verbatimModuleSyntax": false,
+    
+    /* Outros Outputs */
+    "sourceMap": true,                
     "declaration": true,
     "declarationMap": true,
 
-    // Stricter Typechecking Options
+    /* Rigor de Tipagem */
+    "strict": true,                   /* Mantém a rigidez (boa prática) */
+    "skipLibCheck": true,             
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
-
-    // Recommended Options
-    "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true,
-  }
+    "exactOptionalPropertyTypes": true
+  },
+  "include": ["src/**/*"]
 }

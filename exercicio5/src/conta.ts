@@ -27,6 +27,10 @@ export class Conta {
 
 
     transferir(contaDestino: Conta, valor:number):void{
+        if(this.saldo < valor){
+            console.log("Saldo indisponível");
+        }
+        
         this.sacar(valor);
         contaDestino.depositar(valor);
     }

@@ -15,4 +15,10 @@ export class Cliente {
         this.contas = contas;
     }
 
+
+    removerConta(numeroConta:string):void{
+        const indice = this.contas.findIndex(c => c.numero === numeroConta);
+        this.contas.splice(indice, 1);
+    }
+
 }
